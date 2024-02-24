@@ -35,19 +35,9 @@ namespace Mission06_Olsen.Controllers
         [HttpPost]
         public IActionResult Movies(Movie response)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Movies.Add(response);
-                _context.SaveChanges();
-                return View("Confirmation", response);
-            }
-            else
-            {
-                ViewBag.Categories = _context.Categories.ToList();
-
-                return View(response);
-            }
-            
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+            return View("Confirmation", response);
         }
 
         public IActionResult MovieList()
