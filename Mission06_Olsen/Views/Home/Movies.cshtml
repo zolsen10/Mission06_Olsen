@@ -1,22 +1,31 @@
 ﻿@{
-    ViewData["MovieAddition"] = "Add Movie";
+    ViewData["Movie"] = "Add Movie";
 }
 
-@model Mission06_Olsen.Models.MovieAddition
+@model Movie
 
-    <h1 class="display-4">@ViewData["MovieAddition"]</h1>
+    <h1 class="display-4">@ViewData["Movie"]</h1>
 
     <form method="post">
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" class="form-control" style="width: 200px;" />
+
+        <input type="hidden" asp-for="MovieId"/>
+    <label asp-for="CategoryId">Category</label>
+    <select asp-for="CategoryId" class="form-control">
+        <option value="">Select a Category</option>
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
+
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" class="form-control" style="width: 200px;" />
         <label asp-for="Year">Year:</label>
         <input asp-for="Year" class="form-control" style="width: 100px;" />
         <label asp-for="Director">Director:</label>
         <input asp-for="Director" class="form-control" style="width: 200px;" />
-        <label asp-for="MovieRating">Movie Rating:</label>
-        <select asp-for="MovieRating" class="form-control" style="width: 100px;">
+        <label asp-for="Rating">Movie Rating:</label>
+        <select asp-for="Rating" class="form-control" style="width: 100px;">
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
@@ -28,7 +37,11 @@
             <option value="false">No</option>
         </select>
         <input type="hidden" asp-for="Notes" />
-   
+    <label asp-for="CopiedToPlex">Copied to Plex:</label>
+    <select asp-for="CopiedToPlex" class="form-control" style="width: 100px;">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
         <label asp-for="Notes">Notes:</label>
         <input asp-for="Notes" class="form-control" style="width: 200px;" maxlength="25" /><br />
 
